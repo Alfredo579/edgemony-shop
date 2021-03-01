@@ -3,11 +3,15 @@ import "./Card.css"
 function Card({image, title, price}) {
 
     return (
-        <div>
-            <img src={image}/>
+        <div className="Card">
+
+            <div className="imgContainer">
+                <img src={image}/>  
+            </div>
+
             <h3>{title}</h3>
-            <h3>{price}</h3>
-            <button>Read More!</button>
+            <h3>&euro;{price}</h3>
+            <button className="btnCard">Read More!</button>
         </div>
     )
     

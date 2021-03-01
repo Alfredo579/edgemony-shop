@@ -4,3 +4,8 @@
     overflow: scroll;
     display: flex;
 }
+
+.CarouselProducts.flex-wrap {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

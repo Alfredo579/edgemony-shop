@@ -3,7 +3,7 @@ import "./Footer.css"
 function Footer() {
     const thisYear = new Date().getFullYear()
     return (
-        <footer>
+        <footer className="Footer">
             <p>{`Edgemony ${thisYear}`} </p>
         </footer>
     );

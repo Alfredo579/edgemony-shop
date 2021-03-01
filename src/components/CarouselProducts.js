@@ -1,8 +1,15 @@
 import Card from "./Card";
 import "./CarouselProduct.css"
+import { useMediaQuery } from 'react-responsive'
+import "./Hero.css"
 function CarouselProducts({products}) {
+
+    const isTabletOrLaptop = useMediaQuery({
+        query: '(max-device-width: 380px)'
+      })
+
     return (
-        <section className="CarouselProducts">
+        <section className={isTabletOrLaptop? "CarouselProducts": "CarouselProducts flex-wrap"}>
             {products.map(pr => {
              return <Card 
             image={pr.image}
