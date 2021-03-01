@@ -1,0 +1,6 @@
+
+
+.CarouselProducts {
+    overflow: scroll;
+    display: flex;
+}
