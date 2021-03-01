@@ -1,0 +1,23 @@
+.Hero {
+  text-align: center;
+  position: relative;
+}
+
+
+
+.Hero {
+  color: white;
+
+}
+
+.Hero .is-absolute {
+    position: absolute;
+    bottom: 7rem;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.342);
+}
+
+.Hero img {
+    width: 100%;
+}
