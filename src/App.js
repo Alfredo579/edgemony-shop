@@ -34,24 +34,25 @@ function App() {
     
     setLoading(true)
 
-    fetch('https://fakestoreapi.com/product')
+    fetch('https://fakestoreapi.com/products')
     .then(response => {
       if (response.ok) {
         response.json()
+        .then(data => {
+          setData(data)
+          setLoading(false)
+        })
       } else {
         setLoading(false)
         throw new Error('Something went wrong');
       }
     })
-    .then(data => {
-      setData(data)
-      setLoading(false)
-    })
     .catch((err) => {
       console.log(err)
+      setLoading(false)
       setError(true)
     })
-
+    
   }, [])
   
   return <div className="App">
@@ -61,7 +62,7 @@ function App() {
 
     {error ? <ProductError/> : null} 
 
-    {data? <CarouselProducts products={data}/> : null}
+    {data ? <CarouselProducts products={data}/> : null}
     
     {loading ? <ProductLoader/> : null}
 
