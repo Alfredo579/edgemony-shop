@@ -1,18 +1,12 @@
 
-import { useState } from 'react';
 import './CreateModalProduct.css'
 
-function CreateModalProduct({title, price, img, description, showModal, setShowModal}) {
+function CreateModalProduct({title, price, img, description, showModal, setShowModal, id}) {
     
-    // console.log(setShowModal)
-    // const [showModal, setShowModal] = useState()
+
     console.log(showModal)
 
-
-    
-
     return (
-
         <article className={`ModalProduct ${showModal ? `ModalProduct` : `is-hidden`}` }>
             <div className="modal-product-overlay" >
                 <div className="modal-product-body">

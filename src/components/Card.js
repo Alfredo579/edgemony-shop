@@ -12,6 +12,9 @@ function Card({id, image, title, price, description}) {
         setShowModal(true)
         console.log(showModal)
     }
+    
+    
+
 
     return (
         <div key={id} className="Card">

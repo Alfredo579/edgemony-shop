@@ -6,19 +6,23 @@ function CarouselProducts({products}) {
 
     const isTabletOrLaptop = useMediaQuery({
         query: '(max-device-width: 380px)'
-      })
+    })
+
+    console.log(products.id)
 
     return (
         <section className={isTabletOrLaptop? "CarouselProducts": "CarouselProducts flex-wrap"}>
             {products.map(pr => {
-             return <Card 
-            id={pr.id}
-            image={pr.image}
-            title={pr.title}
-            price={pr.price}
-            description={pr.description}
-            />
-            })}
+
+            return(
+                <Card 
+                id={pr.id}
+                image={pr.image}
+                title={pr.title}
+                price={pr.price}
+                description={pr.description}
+                />
+            )})}
         </section>
     )
     
