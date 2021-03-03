@@ -26,6 +26,8 @@
     border-radius: 10px;
 }
 
+
+
 .ModalProduct .btn-close-modal {
     position: absolute;
     top: 0;
@@ -41,7 +43,6 @@
 .ModalProduct .imgModalContainer {
     height: 60%;
     background-color: white;
-   
 }
 
 .ModalProduct .imgModalContainer img {
