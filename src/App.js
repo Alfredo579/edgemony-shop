@@ -1,12 +1,16 @@
-import "./App.css";
+import { useEffect, useState } from "react";
+
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import CarouselProducts from "./components/CarouselProducts";
 import Footer from "./components/Footer";
-import { useEffect, useState } from "react";
+import ProductError from "./components/ProductError";
+import ProductLoader from "./components/ProductLoader";
 // import { data } from "msw/lib/types/context";
 
-const fakeProducts = require("./mocks/data/products.json");
+import "./App.css";
+
+// const fakeProducts = require("./mocks/data/products.json");
 
 const stateIn = {
   title: "Shop",
@@ -30,23 +34,23 @@ function App() {
     
     setLoading(true)
 
-      fetch('https://fakestoreapi.com/product')
-      .then(response => {
-        if (response.ok) {
-          response.json()
-        } else {
-          setLoading(false)
-          throw new Error('Something went wrong');
-        }
-      })
-      .then(data => {
-        setData(data)
+    fetch('https://fakestoreapi.com/product')
+    .then(response => {
+      if (response.ok) {
+        response.json()
+      } else {
         setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err)
-        setError(true)
-      })
+        throw new Error('Something went wrong');
+      }
+    })
+    .then(data => {
+      setData(data)
+      setLoading(false)
+    })
+    .catch((err) => {
+      console.log(err)
+      setError(true)
+    })
 
   }, [])
   
@@ -55,19 +59,11 @@ function App() {
   
     <Hero src={stateIn.cover} title={stateIn.title} description={stateIn.description}/>
 
-    {error ? 
-     <div className="error-container">
-       <span className="is-red">Ops.. </span>
-      Something went wrong.
-       </div>
-       : null} 
+    {error ? <ProductError/> : null} 
 
     {data? <CarouselProducts products={data}/> : null}
     
-    {loading ? <div className="circle-loading-container">
-      <div className="lds-facebook"><div></div><div></div><div></div></div>
-    </div>: null}
-
+    {loading ? <ProductLoader/> : null}
 
     <Footer/>
 

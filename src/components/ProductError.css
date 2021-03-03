@@ -1,0 +1,13 @@
+.error-container {
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: white;
+    
+}
+
+.error-container .is-red {
+    color: red;
+}
