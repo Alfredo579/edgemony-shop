@@ -6,11 +6,10 @@ import CarouselProducts from "./components/CarouselProducts";
 import Footer from "./components/Footer";
 import ProductError from "./components/ProductError";
 import ProductLoader from "./components/ProductLoader";
-// import { data } from "msw/lib/types/context";
+import ModalProduct from "./components/ModalProduct"
 
 import "./App.css";
 
-// const fakeProducts = require("./mocks/data/products.json");
 
 const stateIn = {
   title: "Shop",
@@ -19,15 +18,48 @@ const stateIn = {
     "https://edgemony.com/wp-content/uploads/2020/03/cropped-Logo-edgemony_TeBIANCO-04.png",
   cover:
     "https://images.pexels.com/photos/4123897/pexels-photo-4123897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-  // products: fakeProducts,
 };
 
 
 function App() {
 
-  const [data, setData] = useState(undefined)
+  // modalProduct
+
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [productModal, setProductModal] = useState(null)
+
+  function openProductModal (product) {
+    // evt.preventDefault()
+    setProductModal(product)
+    setIsOpenModal(true)
+  }
+  
+  function closeModal (evt) {
+    evt.preventDefault()
+    setIsOpenModal(false)
+    setTimeout(() => {
+      setProductModal(null)
+    }, 500)
+  }
+  
+  useEffect(() => {
+    if (isOpenModal) {
+      document.body.style.height = `100vh`
+      document.body.style.overflow = `hidden`
+    } else {
+      document.body.style.height = ``
+      document.body.style.overflow = ``
+    }
+  }, [ isOpenModal ])
+  
+  // API logic
+
+  const [products, setProducts] = useState(undefined)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [ retry, setRetry ] = useState(false)
+  
+
 
   
   useEffect(() => {
@@ -39,7 +71,7 @@ function App() {
       if (response.ok) {
         response.json()
         .then(data => {
-          setData(data)
+          setProducts(data)
           setLoading(false)
         })
       } else {
@@ -53,22 +85,33 @@ function App() {
       setError(true)
     })
     
-  }, [])
-  
-  return <div className="App">
-    <Header src={stateIn.logo} alt={`logo of ${stateIn.title}`}/>
-  
-    <Hero src={stateIn.cover} title={stateIn.title} description={stateIn.description}/>
+  }, [ retry ])
 
-    {error ? <ProductError/> : null} 
+  return (
 
-    {data ? <CarouselProducts products={data}/> : null}
-    
-    {loading ? <ProductLoader/> : null}
+        <div className="App">
+          <Header src={stateIn.logo} alt={`logo of ${stateIn.title}`}/>
+        
+          <Hero src={stateIn.cover} title={stateIn.title} description={stateIn.description}/>
 
-    <Footer/>
+          {isOpenModal ? 
+            <ModalProduct 
+          isOpenModal={isOpenModal}
+          closeModal={closeModal}
+          product={productModal}
+          />
+          : null }
 
-  </div>;
+          {products ? <CarouselProducts content={products} openProductModal={openProductModal} products={products}/> : null}
+
+          {error ? <ProductError/> : null} 
+          
+          {loading ? <ProductLoader/> :  null }
+
+          <Footer/>
+
+        </div>
+  )
 }
 
 export default App;

@@ -14,7 +14,7 @@ function Hero({src, title, description}) {
                 <h1>{title}</h1>
                 <h2 className={isTabletOrLaptop? "is-visible":"is-not-visible"}>{description}</h2>
             </div>
-            <img src={src}/>
+            <img src={src} alt={`${title} logo`}/>
         </section>
     )
 }

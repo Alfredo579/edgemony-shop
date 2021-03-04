@@ -2,6 +2,7 @@
 
 .ModalProduct.is-hidden {
     display: none;
+
 }
 
 .ModalProduct .modal-product-overlay {
@@ -14,8 +15,20 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.315);
+    color: white;
+    z-index: 2;
+}
+
+.ModalProduct .modal-click-close {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 3;
 }
+
+
 
 .ModalProduct .modal-product-body {
     max-width: 520px;
@@ -24,6 +37,7 @@
     overflow: scroll;
     position: relative;
     border-radius: 10px;
+    z-index: 4;
 }
 
 
