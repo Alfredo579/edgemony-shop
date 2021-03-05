@@ -10,6 +10,7 @@ import ModalProduct from "./components/ModalProduct"
 
 import "./App.css";
 
+// int state 
 
 const stateIn = {
   title: "Shop",
@@ -29,7 +30,6 @@ function App() {
   const [productModal, setProductModal] = useState(null)
 
   function openProductModal (product) {
-    // evt.preventDefault()
     setProductModal(product)
     setIsOpenModal(true)
   }
@@ -57,7 +57,7 @@ function App() {
   const [products, setProducts] = useState(undefined)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
-  const [ retry, setRetry ] = useState(false)
+  const [retry , setRetry ] = useState(false)
   
 
 
@@ -87,6 +87,34 @@ function App() {
     
   }, [ retry ])
 
+  // search in product
+  const [inputProduct, setInputProduct] = useState('')
+  const [searchProduct, setSearchProduct] = useState([])
+  
+
+  useEffect(() => {
+
+    console.log(inputProduct)
+    if (products) {
+
+      const result = products.filter(function(product) {
+
+        return (product.title.includes(inputProduct) || product.description.includes(inputProduct));
+      })
+      
+      setSearchProduct(result)
+      
+      console.log(searchProduct)
+
+    } else {
+      setRetry(false)
+    }
+
+  }, [inputProduct])
+
+
+
+
   return (
 
         <div className="App">
@@ -102,9 +130,11 @@ function App() {
           />
           : null }
 
-          {products ? <CarouselProducts content={products} openProductModal={openProductModal} products={products}/> : null}
+          <input type="text" onChange={evt=> setInputProduct(evt.target.value)}/>
 
-          {error ? <ProductError/> : null} 
+          {products ? <CarouselProducts products={searchProduct.length > 0 ? searchProduct : products} openProductModal={openProductModal} /> : null}
+
+          {error ? <ProductError retry={() => setRetry(!retry)} /> : null} 
           
           {loading ? <ProductLoader/> :  null }
 
