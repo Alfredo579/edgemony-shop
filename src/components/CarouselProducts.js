@@ -12,12 +12,12 @@ function CarouselProducts({products, openProductModal}) {
 
     return (
         <section className={isTabletOrLaptop? "CarouselProducts": "CarouselProducts flex-wrap"}>
-            {products.map(pr => {
+            {products.map((pr, id) => {
 
             return(
                 <Card 
                 product={pr}
-                key={pr.id}
+                key={id}
                 openProductModal={() => openProductModal(pr)}
                 />
             )})}
