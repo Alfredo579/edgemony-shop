@@ -32,7 +32,6 @@ function App() {
   function openProductModal(product) {
     setProductModal(product);
     setIsOpenModal(true);
-    
   }
 
   function closeModal(evt) {
@@ -62,8 +61,6 @@ function App() {
   const [retry, setRetry] = useState(false);
   const [cartProduct, setCartProduct] = useState([]);
 
-
-
   useEffect(() => {
     setLoading(true);
 
@@ -90,7 +87,11 @@ function App() {
 
   return (
     <div className="App">
-      <Header src={stateIn.logo} alt={`logo of ${stateIn.title}`} cartProduct={cartProduct} />
+      <Header
+        src={stateIn.logo}
+        alt={`logo of ${stateIn.title}`}
+        cartProduct={cartProduct}
+      />
 
       <Hero
         src={stateIn.cover}
@@ -105,26 +106,27 @@ function App() {
           product={productModal}
           setCartProduct={setCartProduct}
           cartProduct={cartProduct}
-          />
-          ) : null}
-
-      {/* <input type="text" onInput={evt=> setInputProduct(evt.target.value)}/> */}
-
-      {
-        <SearchProduct
-        setSearchProduct={setSearchProduct}
-        products={products}
-        setRetry={setRetry}
         />
-      }
+      ) : null}
 
-      {<FiltersProduct
-      products={products}
-      setSearchProduct={setSearchProduct}
-      searchProduct={searchProduct}
-      />}
+      <div className="filter-container">
+        {
+          <SearchProduct
+            setSearchProduct={setSearchProduct}
+            products={products}
+            setRetry={setRetry}
+            searchProduct={searchProduct}
+          />
+        }
 
-      <div>{cartProduct.map(pr => pr.title)}</div>
+        {
+          <FiltersProduct
+            products={products}
+            setSearchProduct={setSearchProduct}
+            searchProduct={searchProduct}
+          />
+        }
+      </div>
 
       {products ? (
         <CarouselProducts
@@ -134,7 +136,6 @@ function App() {
       ) : null}
 
       {error ? <ProductError retry={() => setRetry(!retry)} /> : null}
-
 
       {loading ? <ProductLoader /> : null}
 

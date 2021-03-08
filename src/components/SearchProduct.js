@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 
+import './SearchProduct.css'
+
 export default function SearchProduct({
   setSearchProduct,
   products,
   setRetry,
+  searchProduct,
 }) {
   const [inputProduct, setInputProduct] = useState("");
 
@@ -18,6 +21,16 @@ export default function SearchProduct({
       });
 
       setSearchProduct(result);
+    }
+    if (searchProduct.length > 0) {
+      const result = searchProduct.filter(function (product) {
+        return (
+          product.title.toLowerCase().includes(inputProduct) ||
+          product.description.toLowerCase().includes(inputProduct)
+        );
+      });
+
+      setSearchProduct(result);
     } else {
       setRetry(false);
     }
@@ -25,9 +38,11 @@ export default function SearchProduct({
 
   return (
     <input
+      className="SearchProduct"
       type="text"
       value={inputProduct}
-      onInput={(evt) => setInputProduct(evt.target.value)}
+      onChange={(evt) => setInputProduct(evt.target.value)}
+      placeholder="Search here... "
     />
   );
 }

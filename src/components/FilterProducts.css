@@ -1,0 +1,14 @@
+.btn-category {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  padding: .3rem;
+  font-size: 1.01rem;
+  margin:  1rem;
+  
+}
+
+.btn-category.selected {
+  background-color: rgb(158, 158, 158);
+  color: white;
+}
