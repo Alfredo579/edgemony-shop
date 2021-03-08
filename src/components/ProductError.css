@@ -1,13 +1,44 @@
 .error-container {
     height: 30rem;
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 3rem;
     color: white;
-    
+    padding: 2rem;
+}
+
+.error-container-is-hidden {
+    display: none;
+}
+
+.error-container .btn-retry,
+.error-container .btn-close-banner
+ {
+    font-size: 1.5rem;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem;
+    font-weight: bold;
+    -webkit-box-shadow: 0px 4px 41px 0px rgba(0,0,0,0.69); 
+    box-shadow: 0px 4px 41px 0px rgba(0,0,0,0.69);  
+}
+
+.error-container .btns-container {
+    margin-left: auto;
+}
+
+.error-container .btn-close-banner {
+    background-color: red;
+    color: white;
+    margin-left: 1rem;
 }
 
 .error-container .is-red {
     color: red;
 }
+
+
