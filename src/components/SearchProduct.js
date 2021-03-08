@@ -1,29 +1,33 @@
 import { useEffect, useState } from "react";
 
-
-export default function SearchProduct({setSearchProduct, products, setRetry}) {
-
-  const [inputProduct, setInputProduct] = useState('')
+export default function SearchProduct({
+  setSearchProduct,
+  products,
+  setRetry,
+}) {
+  const [inputProduct, setInputProduct] = useState("");
 
   useEffect(() => {
-
-    console.log(inputProduct)
+    console.log(inputProduct);
     if (products) {
+      const result = products.filter(function (product) {
+        return (
+          product.title.toLowerCase().includes(inputProduct) ||
+          product.description.toLowerCase().includes(inputProduct)
+        );
+      });
 
-      const result = products.filter(function(product) {
- 
-      return (product.title.toLowerCase().includes(inputProduct) || product.description.toLowerCase().includes(inputProduct));
-      })
-      
-      setSearchProduct(result)
-      
-
+      setSearchProduct(result);
     } else {
-      setRetry(false)
+      setRetry(false);
     }
+  }, [inputProduct, setRetry, products, setSearchProduct]);
 
-  }, [inputProduct, setRetry, products, setSearchProduct])
-
-    return <input type="text" onInput={evt=> setInputProduct(evt.target.value)}/>
-    
+  return (
+    <input
+      type="text"
+      value={inputProduct}
+      onInput={(evt) => setInputProduct(evt.target.value)}
+    />
+  );
 }

@@ -1,7 +1,16 @@
+import { useState } from "react";
 
 import './ModalProduct.css'
 
-function ModalProduct({product, isOpenModal, closeModal}) {
+function ModalProduct({product, isOpenModal, closeModal, setCartProduct, cartProduct}) {
+
+    const [clicked, setClicked] = useState(true)
+
+    const addCartProduct = (product) => {
+        setCartProduct((oldCartProduct) => oldCartProduct.includes(product)?[...oldCartProduct]: [...oldCartProduct, product]  )
+        setClicked(!clicked)
+    } 
+
     
     return (
         <article className={`ModalProduct ${isOpenModal ? `ModalProduct` : `is-hidden`}` }>
@@ -16,7 +25,7 @@ function ModalProduct({product, isOpenModal, closeModal}) {
                             <h2 className="modal-product-price">{product.price}</h2>
                             <h2 className="modal-product-title">{product.title}</h2>
                             <h3 className="modal-product-description">{product.description}</h3>
-            
+                            <button className={`btn-addCart ${cartProduct.includes(product) ? `is-grey` : `` }` } onClick={() => addCartProduct(product)}>Add to cart</button>
                 </div>
             </div>
         </article> 

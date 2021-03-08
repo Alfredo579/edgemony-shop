@@ -32,6 +32,7 @@ function App() {
   function openProductModal(product) {
     setProductModal(product);
     setIsOpenModal(true);
+    
   }
 
   function closeModal(evt) {
@@ -59,6 +60,9 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [retry, setRetry] = useState(false);
+  const [cartProduct, setCartProduct] = useState([]);
+
+
 
   useEffect(() => {
     setLoading(true);
@@ -86,7 +90,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header src={stateIn.logo} alt={`logo of ${stateIn.title}`} />
+      <Header src={stateIn.logo} alt={`logo of ${stateIn.title}`} cartProduct={cartProduct} />
 
       <Hero
         src={stateIn.cover}
@@ -99,6 +103,8 @@ function App() {
           isOpenModal={isOpenModal}
           closeModal={closeModal}
           product={productModal}
+          setCartProduct={setCartProduct}
+          cartProduct={cartProduct}
           />
           ) : null}
 
@@ -117,6 +123,8 @@ function App() {
       setSearchProduct={setSearchProduct}
       searchProduct={searchProduct}
       />}
+
+      <div>{cartProduct.map(pr => pr.title)}</div>
 
       {products ? (
         <CarouselProducts

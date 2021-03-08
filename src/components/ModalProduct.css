@@ -65,5 +65,21 @@
     object-fit:contain;
 }
 
+.ModalProduct .btn-addCart {
+
+    margin: 0 1rem;
+    padding: .5rem;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+
+.ModalProduct .btn-addCart.is-grey {
+    background-color: rgb(116, 116, 116);
+}
+
+
 
 
