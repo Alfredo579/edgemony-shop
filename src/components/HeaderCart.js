@@ -1,20 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FaCartPlus } from "react-icons/fa";
 
 import "./HeaderCart.css";
-import ModalCart from "./ModalCart";
+// import ModalCart from "./ModalCart";
 
-export default function HeaderCart({ cartProduct, setCartProduct }) {
-
-  const [totalPrice, setTotalPrice] = useState(0)
-
-  useEffect(() => {
-   
-   setTotalPrice(cartProduct.reduce((acc, pr) => acc + pr.price, 0)) 
-  
-  }, [cartProduct])
-
-  const [ModalCartIsOpen, setModalCartIsOpen] = useState(false);
+export default function HeaderCart({
+  cartProducts,
+  ModalCartIsOpen,
+  setModalCartIsOpen,
+  totalPrice,
+}) {
 
   useEffect(() => {
     if (ModalCartIsOpen) {
@@ -28,24 +23,16 @@ export default function HeaderCart({ cartProduct, setCartProduct }) {
 
   return (
     <div className="HeaderCart">
-      {!!cartProduct.length && <h3>{totalPrice.toFixed(2)} €</h3>}
+      {!!cartProducts.length && <h3>{totalPrice.toFixed(2)} €</h3>}
       <div className="cart-icon">
-        <h3 onClick={() => setModalCartIsOpen(!ModalCartIsOpen)}>
+        <h3  onClick={cartProducts.length > 0 ? () => setModalCartIsOpen(!ModalCartIsOpen): null}>
           <FaCartPlus />
         </h3>
-        {!!cartProduct.length && (
-          <h3 className="cart-count">{cartProduct.length}</h3>
+        {!!cartProducts.length && (
+          <h3 className="cart-count">{cartProducts.length}</h3>
         )}
       </div>
-      {ModalCartIsOpen ? (
-        <ModalCart
-          setModalCartIsOpen={setModalCartIsOpen}
-          ModalCartIsOpen={ModalCartIsOpen}
-          cartProduct={cartProduct}
-          totalPrice={totalPrice}
-          setCartProduct={setCartProduct}
-        />
-      ) : null}
+     
     </div>
   );
 }

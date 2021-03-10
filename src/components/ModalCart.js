@@ -1,27 +1,39 @@
 import "./ModalCart.css";
-import ModalCartProduct from './ModalCartProduct'
+import ModalCartProduct from "./ModalCartProduct";
 
-export default function ModalCart({cartProduct, totalPrice, setModalCartIsOpen, modalCartIsOpen, setCartProduct}) {
-
-    return ( 
-         <div className="ModalCart">
-            <div className="modal-overlay" onClick={() => setModalCartIsOpen(false)}></div>
-            <div className="modal-body">
-                <header className="modal-head">
-                    <button type="button" onClick={() => setModalCartIsOpen(false)} className="btn-modal-close">X</button>
-                    <h2 className="modal-title">Cart</h2>
-                </header>
-
-                <div className="cart-product-container">
-                 {cartProduct.map((pr, id) => <ModalCartProduct setCartProduct={setCartProduct} cartProduct={cartProduct} product={pr} id={id}/>  ) }
-
-                </div>
+export default function ModalCart({
+  cartProducts,
+  totalPrice,
+  close,
+  removeFromCart,
+  setProductQuantity,
+}) {
 
 
-                
-          
-                <footer className="modal-footer">Total: {totalPrice} €</footer>
-            </div>
+  return (
+    <div className="ModalCart">
+      <div className="modal-overlay" onClick={close}></div>
+      <div className="modal-body">
+        <header className="modal-head">
+          <button type="button" onClick={close} className="btn-modal-close">
+            X
+          </button>
+          <h2 className="modal-title">Cart</h2>
+        </header>
+
+        <div className="cart-product-container">
+          {cartProducts.length > 0 ? cartProducts.map((pr, id) => (
+            <ModalCartProduct
+              key={pr.id}
+              product={pr}
+              removeFromCart={removeFromCart}
+              setProductQuantity={setProductQuantity}
+            />
+          )): <h3 className="cart-empty"> No have products to show!</h3>}
         </div>
-    )
+
+        <footer className="modal-footer">Total: {totalPrice} €</footer>
+      </div>
+    </div>
+  );
 }

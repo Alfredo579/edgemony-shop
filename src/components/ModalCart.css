@@ -70,3 +70,8 @@
     background-color: rgb(85, 85, 85);
     
 }
+
+.ModalCart .cart-empty {
+    margin: 0 2rem;
+    color: white;
+}
