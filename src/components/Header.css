@@ -1,4 +1,9 @@
 .Header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -10,28 +15,5 @@
     width: 12rem;
 }
 
-.Header .cart-container {
-    display: flex;
-    color: white;
-    margin: 0 2rem;
-    font-size: 1.2rem;
-}
-
-.Header .cart-container .cart-icon {
-    display: flex;
-    margin: 0 2rem;
-    position: relative;
-}
-
-.Header .cart-container .cart-count {
-    position: absolute;
-    top: 0;
-    right: -0.5rem;
-    background-color: red;
-    padding: .1rem .2rem;
-    border-radius: 50%;
-    font-size: .7rem;
-
-}
 
 

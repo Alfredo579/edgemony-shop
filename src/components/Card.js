@@ -2,7 +2,6 @@ import "./Card.css";
 
 function Card({ product, openProductModal }) {
 
-  product.clicked= false
 
 
   return (

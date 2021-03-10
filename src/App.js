@@ -9,6 +9,7 @@ import ProductLoader from "./components/ProductLoader";
 import ModalProduct from "./components/ModalProduct";
 import SearchProduct from "./components/SearchProduct";
 import FiltersProduct from "./components/FiltersProducts";
+import { fetchProducts, fetchCategories } from "./services/api";
 
 import "./App.css";
 
@@ -57,30 +58,42 @@ function App() {
   const [products, setProducts] = useState(undefined);
   const [searchProduct, setSearchProduct] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [apiError, setApiError] = useState(false);
   const [retry, setRetry] = useState(false);
   const [cartProduct, setCartProduct] = useState([]);
+  const [categoriesProducts, setCategoriesProducts] = useState([]);
 
+  // useEffect(() => {
+  //   setLoading(true);
+
+  //   fetch("https://fakestoreapi.com/products")
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         response.json().then((data) => {
+  //           setProducts(data);
+  //           setLoading(false);
+  //         });
+  //       } else {
+  //         setLoading(false);
+  //         throw new Error("Something went wrong");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setLoading(false);
+  //       setError(true);
+  //     });
+  // }, [retry]);
   useEffect(() => {
     setLoading(true);
-
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => {
-        if (response.ok) {
-          response.json().then((data) => {
-            setProducts(data);
-            setLoading(false);
-          });
-        } else {
-          setLoading(false);
-          throw new Error("Something went wrong");
-        }
+    setApiError("");
+    Promise.all([fetchProducts(), fetchCategories()])
+      .then(([products, categories]) => {
+        setProducts(products);
+        setCategoriesProducts(categories);
       })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-        setError(true);
-      });
+      .catch((err) => setApiError(err.message))
+      .finally(() => setLoading(false));
   }, [retry]);
 
   // search in product
@@ -91,6 +104,7 @@ function App() {
         src={stateIn.logo}
         alt={`logo of ${stateIn.title}`}
         cartProduct={cartProduct}
+        setCartProduct={setCartProduct}
       />
 
       <Hero
@@ -124,6 +138,9 @@ function App() {
             products={products}
             setSearchProduct={setSearchProduct}
             searchProduct={searchProduct}
+            categoriesProducts={categoriesProducts}
+            fetchCategories={fetchCategories}
+            setCategoriesProduct={setCategoriesProducts}
           />
         }
       </div>
@@ -135,7 +152,7 @@ function App() {
         />
       ) : null}
 
-      {error ? <ProductError retry={() => setRetry(!retry)} /> : null}
+      {apiError ? <ProductError setRetry={setRetry} retry={retry} /> : null}
 
       {loading ? <ProductLoader /> : null}
 
