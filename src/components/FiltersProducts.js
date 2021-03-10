@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import "./FilterProducts.css";
 
@@ -6,16 +6,21 @@ export default function FilterProduct({
   products,
   setSearchProduct,
   searchProduct,
+  categoriesProducts,
+  setCategoriesProduct,
+  fetchCategories
 }) {
-  const [categoriesProducts, setCategoriesProducts] = useState([]);
+  // const [categoriesProducts, setCategoriesProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products/categories")
-      .then((response) => response.json())
-      .then((data) => {
-        setCategoriesProducts(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://fakestoreapi.com/products/categories")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setCategoriesProducts(data);
+  //     });
+  // }, []);
+
+  // setCategoriesProduct(fetchCategories)
 
   // this work but in two click
 

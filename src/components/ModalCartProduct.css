@@ -1,0 +1,32 @@
+
+
+.ModalCartProduct {
+    width: 95%;
+    height: 7rem;
+    border: black solid  1px;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+    flex-shrink: 0;
+    -webkit-box-shadow: 0px 4px 41px 0px rgba(0,0,0,0.69); 
+    box-shadow: 0px 4px 41px 0px rgba(0,0,0,0.69);  
+
+}
+
+.ModalCartProduct .product-img {
+    width: 30%;
+    object-fit:cover;
+}
+
+.ModalCartProduct .qty-price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between ;
+    align-items: center;
+    flex-shrink: 0;
+}
+

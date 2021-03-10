@@ -34,7 +34,7 @@ export default function SearchProduct({
     } else {
       setRetry(false);
     }
-  }, [inputProduct, setRetry, products, setSearchProduct]);
+  }, [inputProduct, products]);
 
   return (
     <input

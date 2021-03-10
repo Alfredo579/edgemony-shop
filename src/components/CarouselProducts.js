@@ -13,7 +13,6 @@ function CarouselProducts({products, openProductModal}) {
     return (
         <section className={isTabletOrLaptop? "CarouselProducts": "CarouselProducts flex-wrap"}>
             {products.map((pr, id) => {
-                pr.clicked = false;
 
             return(
                 <Card 

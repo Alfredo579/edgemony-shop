@@ -1,0 +1,25 @@
+
+
+.HeaderCart {
+    display: flex;
+    color: white;
+    margin: 0 .1rem;
+    font-size: 1.2rem;
+}
+
+.HeaderCart .cart-icon {
+    display: flex;
+    margin: 0 2rem;
+    position: relative;
+}
+
+.HeaderCart .cart-count {
+    position: absolute;
+    top: 0;
+    right: -0.5rem;
+    background-color: red;
+    padding: .1rem .2rem;
+    border-radius: 50%;
+    font-size: .7rem;
+
+}
