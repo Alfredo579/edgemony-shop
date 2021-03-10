@@ -1,0 +1,12 @@
+
+.CategoriesFilter {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.CarouselProducts.flex-wrap .CategoriesFilter {
+    display: flex;
+    flex-direction: row;
+
+}

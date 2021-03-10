@@ -7,8 +7,9 @@ import Footer from "./components/Footer";
 import ProductError from "./components/ProductError";
 import ProductLoader from "./components/ProductLoader";
 import ModalProduct from "./components/ModalProduct";
-import SearchProduct from "./components/SearchProduct";
-import FiltersProduct from "./components/FiltersProducts";
+
+import ModalCart from "./components/ModalCart";
+
 import { fetchProducts, fetchCategories } from "./services/api";
 
 import "./App.css";
@@ -26,7 +27,6 @@ const stateIn = {
 
 function App() {
   // modalProduct
-
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [productModal, setProductModal] = useState(null);
 
@@ -56,55 +56,70 @@ function App() {
   // API logic
 
   const [products, setProducts] = useState(undefined);
-  const [searchProduct, setSearchProduct] = useState([]);
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState(false);
   const [retry, setRetry] = useState(false);
-  const [cartProduct, setCartProduct] = useState([]);
-  const [categoriesProducts, setCategoriesProducts] = useState([]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-
-  //   fetch("https://fakestoreapi.com/products")
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         response.json().then((data) => {
-  //           setProducts(data);
-  //           setLoading(false);
-  //         });
-  //       } else {
-  //         setLoading(false);
-  //         throw new Error("Something went wrong");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       setLoading(false);
-  //       setError(true);
-  //     });
-  // }, [retry]);
   useEffect(() => {
     setLoading(true);
     setApiError("");
     Promise.all([fetchProducts(), fetchCategories()])
       .then(([products, categories]) => {
         setProducts(products);
-        setCategoriesProducts(categories);
+        setCategories(categories);
       })
       .catch((err) => setApiError(err.message))
       .finally(() => setLoading(false));
   }, [retry]);
 
-  // search in product
+  // filter product
+  const [searchProduct, setSearchProduct] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  // cart logic
+
+  const [cartProducts, setCartProducts] = useState([]);
+
+  const inCartProducts = cartProducts.map((cartItem) => {
+    const { price, image, title, id } = products.find(
+      (p) => p.id === cartItem.id
+    );
+    return { price, image, title, id, quantity: cartItem.quantity };
+  });
+  const totalPrice = inCartProducts.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
+  function isInCart(product) {
+    return (
+      product != null && cartProducts.find((p) => p.id === product.id) != null
+    );
+  }
+  function addToCart(productId) {
+    setCartProducts([...cartProducts, { id: productId, quantity: 1 }]);
+  }
+  function removeFromCart(productId) {
+    setCartProducts(cartProducts.filter((product) => product.id !== productId));
+  }
+  function setProductQuantity(productId, quantity) {
+    setCartProducts(
+      cartProducts.map((product) =>
+        product.id === productId ? { ...product, quantity } : product
+      )
+    );
+  }
+
+  const [ModalCartIsOpen, setModalCartIsOpen] = useState(false);
 
   return (
     <div className="App">
       <Header
         src={stateIn.logo}
         alt={`logo of ${stateIn.title}`}
-        cartProduct={cartProduct}
-        setCartProduct={setCartProduct}
+        cartProducts={cartProducts}
+        ModalCartIsOpen={ModalCartIsOpen}
+        setModalCartIsOpen={setModalCartIsOpen}
+        totalPrice={totalPrice}
       />
 
       <Hero
@@ -118,37 +133,31 @@ function App() {
           isOpenModal={isOpenModal}
           closeModal={closeModal}
           product={productModal}
-          setCartProduct={setCartProduct}
-          cartProduct={cartProduct}
+          cartProducts={cartProducts}
+          inCart={isInCart(productModal)}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
         />
       ) : null}
 
-      <div className="filter-container">
-        {
-          <SearchProduct
-            setSearchProduct={setSearchProduct}
-            products={products}
-            setRetry={setRetry}
-            searchProduct={searchProduct}
-          />
-        }
+      {ModalCartIsOpen ? (
+        <ModalCart
+          cartProducts={inCartProducts}
+          totalPrice={totalPrice}
+          setCartProducts={setCartProducts}
+          // products={cartProducts}
 
-        {
-          <FiltersProduct
-            products={products}
-            setSearchProduct={setSearchProduct}
-            searchProduct={searchProduct}
-            categoriesProducts={categoriesProducts}
-            fetchCategories={fetchCategories}
-            setCategoriesProduct={setCategoriesProducts}
-          />
-        }
-      </div>
+          close={() => setModalCartIsOpen(false)}
+          removeFromCart={removeFromCart}
+          setProductQuantity={setProductQuantity}
+        />
+      ) : null}
 
       {products ? (
         <CarouselProducts
           products={searchProduct.length > 0 ? searchProduct : products}
           openProductModal={openProductModal}
+          categories={categories}
         />
       ) : null}
 

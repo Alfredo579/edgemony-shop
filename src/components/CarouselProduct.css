@@ -5,7 +5,23 @@
     display: flex;
 }
 
-.CarouselProducts.flex-wrap {
+.CarouselProducts {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+.CarouselProducts .ProductList-filters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem ;
+    width: 100%;
+}
+
+.CarouselProducts.flex-wrap .ProductList-filters {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+

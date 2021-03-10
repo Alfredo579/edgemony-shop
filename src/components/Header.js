@@ -1,15 +1,27 @@
+
 import "./Header.css";
 import HeaderCart from "./HeaderCart";
-function Header({ src, alt, cartProduct, setCartProduct }) {
-  
-  
+function Header({
+  src,
+  alt,
+  cartProducts,
+  ModalCartIsOpen,
+  setModalCartIsOpen,
+  totalPrice,
+}) {
   return (
     <header className="Header">
       <img src={src} alt={alt} />
-        
-      <HeaderCart cartProduct={cartProduct} setCartProduct={setCartProduct} />
+
+      <HeaderCart
+        cartProducts={cartProducts}
+        ModalCartIsOpen={ModalCartIsOpen}
+        setModalCartIsOpen={setModalCartIsOpen}
+        totalPrice={totalPrice}
+      />
     </header>
   );
 }
+
 
 export default Header;

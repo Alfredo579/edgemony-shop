@@ -34,10 +34,10 @@
     max-width: 520px;
     height: 50rem;
     background-color: black;
-    overflow: scroll;
     position: relative;
     border-radius: 10px;
     z-index: 4;
+    overflow: hidden;
 }
 
 
@@ -64,6 +64,21 @@
     height: 100%;
     object-fit:contain;
 }
+
+.ModalProduct .modal-product-price {
+    margin-left: 80%;
+}
+
+.ModalProduct .modal-product-title {
+    padding: .5rem;
+}
+
+.ModalProduct .modal-product-description {
+    overflow: scroll;
+    height: 10%;
+    padding: 0 .5rem;
+}
+
 
 .ModalProduct .btn-addCart {
 

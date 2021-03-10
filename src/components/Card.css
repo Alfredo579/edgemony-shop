@@ -1,6 +1,7 @@
 
 
 .Card {
+    position: relative;
     width: 20rem;
     height: 45rem;
     flex-shrink: 0;
@@ -29,15 +30,32 @@
     background-color: white;
 }
 
-.Card h3 {
-    padding: 1rem;
+.Card .relative-container {
+    position: relative;
 }
 
+.Card .relative-container .card-price {
+    position: absolute;
+    right: 0;
+    top: -3.5rem;
+    padding: 0 1rem;
+}
+
+.Card .relative-container .card-title {
+    padding:  2rem .5rem;
+}
+
+
+
 .Card .btnCard {
-    margin: 0 1rem;
+    margin: 1rem 1rem;
     padding: .5rem;
     background-color: white;
     border: none;
     border-radius: 5px;
     font-weight: bold;
+    font-size: 1.1rem;
+    position: absolute;
+    bottom: 0;
+    padding: .5rem 4rem;
 }

@@ -1,0 +1,15 @@
+.CategoryFilter {
+    margin:.5rem;
+    font-size: 1.2rem;
+    background-color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: .4rem;
+    
+}
+
+.CategoryFilter.selected {
+    background-color: black;
+    color: white;
+}

@@ -10,8 +10,12 @@ function Card({ product, openProductModal }) {
         <img src={product.image} alt={product.title} />
       </div>
 
-      <h3>&euro;{product.price}</h3>
-      <h3>{product.title}</h3>
+      <div className="relative-container">
+        <h3 className="card-price">&euro;{product.price}</h3>
+        <h3 className="card-title">{product.title}</h3>
+
+      </div>
+
 
       <button type="button" onClick={openProductModal} className="btnCard">
         Read More!
