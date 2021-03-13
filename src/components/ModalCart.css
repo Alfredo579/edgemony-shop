@@ -8,6 +8,7 @@
     right: 0;
     z-index: 3;
     position: relative;
+  
 }
 
 .ModalCart .modal-overlay {
@@ -16,8 +17,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.445);
+    background-color: rgba(0, 0, 0, 0.719);
     z-index: 4;
+    animation:  modalCartOverlayAppears 1s ease-in; 
+
 }
 
 .ModalCart .modal-body {
@@ -28,6 +31,7 @@
     max-width: 550px;
     background-color: rgb(255, 255, 255);
     z-index: 5;
+    animation:   modalCartAppears 1s ease-in-out;
     
 }
 
@@ -74,4 +78,38 @@
 .ModalCart .cart-empty {
     margin: 0 2rem;
     color: white;
+}
+
+
+  @keyframes modalCartAppears {
+    0% {
+        width: 0;
+    }
+    50% {
+        max-width: 200px;
+
+    }
+    100% {
+        max-width: 550px;
+
+    }
+  }
+
+@keyframes modalCartClose {
+    0% {
+        width: 550px ;
+    }
+    50% {
+        max-width: 200px;
+
+    }
+    100% {
+        max-width:0;
+
+    }
+}
+
+@keyframes modalCartOverlayAppears {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }

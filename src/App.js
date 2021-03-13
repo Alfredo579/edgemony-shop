@@ -29,6 +29,7 @@ function App() {
   // modalProduct
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [productModal, setProductModal] = useState(null);
+  const [ModalCartIsOpen, setModalCartIsOpen] = useState(false);
 
   function openProductModal(product) {
     setProductModal(product);
@@ -44,14 +45,14 @@ function App() {
   }
 
   useEffect(() => {
-    if (isOpenModal) {
+    if (isOpenModal || ModalCartIsOpen) {
       document.body.style.height = `100vh`;
       document.body.style.overflow = `hidden`;
     } else {
       document.body.style.height = ``;
       document.body.style.overflow = ``;
     }
-  }, [isOpenModal]);
+  }, [isOpenModal, ModalCartIsOpen]);
 
   // API logic
 
@@ -109,7 +110,6 @@ function App() {
     );
   }
 
-  const [ModalCartIsOpen, setModalCartIsOpen] = useState(false);
 
   return (
     <div className="App">
@@ -145,8 +145,6 @@ function App() {
           cartProducts={inCartProducts}
           totalPrice={totalPrice}
           setCartProducts={setCartProducts}
-          // products={cartProducts}
-
           close={() => setModalCartIsOpen(false)}
           removeFromCart={removeFromCart}
           setProductQuantity={setProductQuantity}
