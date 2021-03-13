@@ -12,6 +12,8 @@ export default function ModalCartProduct({
 
   console.log(product);
 
+  
+
   return (
     <main key={id} className="ModalCartProduct">
       <img className="product-img" src={image} alt="" />

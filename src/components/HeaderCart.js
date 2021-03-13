@@ -11,15 +11,7 @@ export default function HeaderCart({
   totalPrice,
 }) {
 
-  useEffect(() => {
-    if (ModalCartIsOpen) {
-      document.body.style.height = `100vh`;
-      document.body.style.overflow = `hidden`;
-    } else {
-      document.body.style.height = ``;
-      document.body.style.overflow = ``;
-    }
-  }, [ModalCartIsOpen]);
+ 
 
   return (
     <div className="HeaderCart">

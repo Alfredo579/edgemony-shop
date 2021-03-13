@@ -69,3 +69,7 @@
     border-radius: 8px;
     box-shadow: inset -24px 10px 12px #858585;
    }
+
+   button:focus {
+     outline: none;
+   }
