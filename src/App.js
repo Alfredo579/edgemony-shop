@@ -7,6 +7,10 @@ import Footer from "./components/Footer";
 import ProductError from "./components/ProductError";
 import ProductLoader from "./components/ProductLoader";
 import ModalProduct from "./components/ModalProduct";
+import ModalSidebar from "./components/ModalSidebar";
+import ModalCenter from "./components/ModalCenter";
+import ProductForModal from "./components/ProductForModal";
+import Cart from "./components/Cart";
 
 import ModalCart from "./components/ModalCart";
 
@@ -110,7 +114,6 @@ function App() {
     );
   }
 
-
   return (
     <div className="App">
       <Header
@@ -129,27 +132,36 @@ function App() {
       />
 
       {isOpenModal ? (
-        <ModalProduct
-          isOpenModal={isOpenModal}
-          closeModal={closeModal}
-          product={productModal}
-          cartProducts={cartProducts}
-          inCart={isInCart(productModal)}
-          addToCart={addToCart}
-          removeFromCart={removeFromCart}
-        />
-      ) : null}
+        <ModalCenter isOpenModal={isOpenModal} closeModal={closeModal}>
+          <ProductForModal
+            isOpenModal={isOpenModal}
+            product={productModal}
+            cartProducts={cartProducts}
+            inCart={isInCart(productModal)}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
+          />
+        </ModalCenter>
+      ) :
+      
+      
+      null}
 
       {ModalCartIsOpen ? (
-        <ModalCart
-          cartProducts={inCartProducts}
-          totalPrice={totalPrice}
-          setCartProducts={setCartProducts}
+        <ModalSidebar
           close={() => setModalCartIsOpen(false)}
-          removeFromCart={removeFromCart}
-          setProductQuantity={setProductQuantity}
-        />
-      ) : null}
+          totalPrice={totalPrice}
+        >
+          <Cart
+            close={() => setModalCartIsOpen(false)}
+            cartProducts={inCartProducts}
+            setCartProducts={setCartProducts}
+            removeFromCart={removeFromCart}
+            setProductQuantity={setProductQuantity}
+          />
+        </ModalSidebar>
+      ) : 
+      null}
 
       {products ? (
         <CarouselProducts

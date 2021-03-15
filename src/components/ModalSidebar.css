@@ -1,0 +1,111 @@
+
+.ModalSidebar {
+    color: black;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    position: relative;
+  
+}
+
+.ModalSidebar .modal-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.719);
+    z-index: 4;
+    animation:  modalCartOverlayAppears 1s ease-in; 
+
+}
+ 
+.ModalSidebar .modal-body {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    max-width: 550px;
+    background-color: rgb(255, 255, 255);
+    z-index: 5;
+    animation:   modalCartAppears 1s ease-in-out;
+}
+
+.ModalSidebar .modal-body .modal-head {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 1rem;
+}
+
+.ModalSidebar .modal-body .modal-head .btn-modal-close {
+    background-color: black;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+}
+ 
+.ModalSidebar .modal-body .modal-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top:1px solid  black ;
+    background-color: black;
+    color: white;
+}
+
+.ModalSidebar  .cart-product-container {
+    overflow: scroll;
+    height: 100%;
+    padding: 6rem 0 ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(85, 85, 85);
+    
+}
+
+
+  @keyframes modalCartAppears {
+    0% {
+        width: 0;
+    }
+    50% {
+        max-width: 200px;
+
+    }
+    100% {
+        max-width: 550px;
+
+    }
+  }
+
+@keyframes modalCartClose {
+    0% {
+        width: 550px ;
+    }
+    50% {
+        max-width: 200px;
+
+    }
+    100% {
+        max-width:0;
+
+    }
+}
+/* 
+@keyframes modalCartOverlayAppears {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+} */

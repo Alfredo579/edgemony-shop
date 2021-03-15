@@ -1,0 +1,33 @@
+
+
+.Cart .cart-empty {
+    margin: 0 2rem;
+    color: white;
+}
+
+
+  @keyframes modalCartAppears {
+    0% {
+        width: 0;
+    }
+    50% {
+        max-width: 200px;
+    }
+    100% {
+        max-width: 550px;
+    }
+  }
+
+@keyframes modalCartClose {
+    0% {
+        width: 550px ;
+    }
+    50% {
+        max-width: 200px;
+
+    }
+    100% {
+        max-width:0;
+    }
+}
+

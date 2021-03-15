@@ -3,8 +3,6 @@
 .ModalProduct.is-hidden {
     display: none;
     animation: modalProductClose .3s ease-in-out;
-
-
 }
 
 .ModalProduct .modal-product-overlay {
