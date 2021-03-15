@@ -7,21 +7,6 @@
 
 }
 
-.ModalCenter .modal-product-overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.575);
-    color: white;
-    z-index: 2;
-    animation:  modalProductOverlayAppears 1000ms ease-in; 
-
-}
 
 .ModalCenter .modal-click-close {
     position: absolute;
@@ -34,6 +19,7 @@
 
 .ModalCenter .modal-product-body {
     position: relative;
+    color: white;
 }
 
 

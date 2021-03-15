@@ -1,5 +1,5 @@
 
-.ModalSidebar {
+/* .ModalSidebar {
     color: black;
     position: fixed;
     top: 0;
@@ -22,7 +22,7 @@
     animation:  modalCartOverlayAppears 1s ease-in; 
 
 }
- 
+  */
 .ModalSidebar .modal-body {
     display: flex;
     flex-direction: column;

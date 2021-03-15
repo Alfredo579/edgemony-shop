@@ -1,8 +1,6 @@
 import "./ProductForModal.css";
 
 function ProductForModal({
-  isOpenModal,
-  closeModal,
   product,
   cartProducts,
   inCart,
@@ -18,19 +16,7 @@ function ProductForModal({
   };
 
   return (
-    // <article
-    //   className={`ProductForModal ${isOpenModal ? `ProductForModal` : `is-hidden`}`}
-    // >
-    //   <div className="modal-product-overlay">
-    //     <div className="modal-click-close" onClick={closeModal}></div>
-    //     <div className="modal-product-body">
-    //       <button
-    //         className="btn-close-modal"
-    //         type="button"
-    //         onClick={closeModal}
-    //       >
-    //         X
-    //       </button>
+
     <div className="ProductForModal">
       <div className="imgModalContainer">
         <img src={product.image} alt={product.title} />
@@ -50,8 +36,7 @@ function ProductForModal({
       
      
     </div>
-    //   </div>
-    // </article>
+ 
   );
 }
 

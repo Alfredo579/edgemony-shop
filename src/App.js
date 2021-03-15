@@ -6,7 +6,7 @@ import CarouselProducts from "./components/CarouselProducts";
 import Footer from "./components/Footer";
 import ProductError from "./components/ProductError";
 import ProductLoader from "./components/ProductLoader";
-import ModalProduct from "./components/ModalProduct";
+import ModalOverlay from "./components/ModalOverlay";
 import ModalSidebar from "./components/ModalSidebar";
 import ModalCenter from "./components/ModalCenter";
 import ProductForModal from "./components/ProductForModal";
@@ -132,36 +132,36 @@ function App() {
       />
 
       {isOpenModal ? (
-        <ModalCenter isOpenModal={isOpenModal} closeModal={closeModal}>
-          <ProductForModal
-            isOpenModal={isOpenModal}
-            product={productModal}
-            cartProducts={cartProducts}
-            inCart={isInCart(productModal)}
-            addToCart={addToCart}
-            removeFromCart={removeFromCart}
-          />
-        </ModalCenter>
-      ) :
-      
-      
-      null}
+        <ModalOverlay close={closeModal}>
+          <ModalCenter isOpenModal={isOpenModal} closeModal={closeModal}>
+            <ProductForModal
+              isOpenModal={isOpenModal}
+              product={productModal}
+              cartProducts={cartProducts}
+              inCart={isInCart(productModal)}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+            />
+          </ModalCenter>
+        </ModalOverlay>
+      ) : null}
 
       {ModalCartIsOpen ? (
-        <ModalSidebar
-          close={() => setModalCartIsOpen(false)}
-          totalPrice={totalPrice}
-        >
-          <Cart
+        <ModalOverlay close={() => setModalCartIsOpen(false)}>
+          <ModalSidebar
             close={() => setModalCartIsOpen(false)}
-            cartProducts={inCartProducts}
-            setCartProducts={setCartProducts}
-            removeFromCart={removeFromCart}
-            setProductQuantity={setProductQuantity}
-          />
-        </ModalSidebar>
-      ) : 
-      null}
+            totalPrice={totalPrice}
+          >
+            <Cart
+              close={() => setModalCartIsOpen(false)}
+              cartProducts={inCartProducts}
+              setCartProducts={setCartProducts}
+              removeFromCart={removeFromCart}
+              setProductQuantity={setProductQuantity}
+            />
+          </ModalSidebar>
+        </ModalOverlay>
+      ) : null}
 
       {products ? (
         <CarouselProducts
