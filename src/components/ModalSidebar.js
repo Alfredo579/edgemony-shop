@@ -1,10 +1,8 @@
 import "./ModalSidebar.css";
-import ModalCartProduct from "./ModalCartProduct";
 
 export default function ModalSidebar({ close, children, totalPrice }) {
   return (
     <div className="ModalSidebar">
-      // <div className="modal-overlay" onClick={close}></div>
       <div className="ModalSidebar modal-body">
         <header className="modal-head">
           <button type="button" onClick={close} className="btn-modal-close">
