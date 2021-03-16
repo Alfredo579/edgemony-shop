@@ -8,11 +8,7 @@ export default function ModalCartProduct({
   const { image, title, price, quantity, id } = product;
   const increment = () => setProductQuantity(id, quantity + 1);
   const decrement = () => setProductQuantity(id, quantity - 1);
-  const remove = () => removeFromCart(id);
-
-  console.log(product);
-
-  
+  const remove = () => removeFromCart(product);
 
   return (
     <main key={id} className="ModalCartProduct">

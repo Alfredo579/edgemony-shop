@@ -3,7 +3,7 @@ import ModalCartProduct from "./ModalCartProduct";
 
 export default function ModalCart({
   cartProducts,
-  totalPrice,
+  footerContent,
   close,
   removeFromCart,
   setProductQuantity,
@@ -32,7 +32,7 @@ export default function ModalCart({
           )): <h3 className="cart-empty"> No have products to show!</h3>}
         </div>
 
-        <footer className="modal-footer">Total: {totalPrice} €</footer>
+        <footer className="modal-footer">Total: {footerContent} €</footer>
       </div>
     </div>
   );
