@@ -1,4 +1,8 @@
+import {Link} from "react-router-dom";
+
+
 import "./Card.css";
+import PropTypes from "prop-types"
 
 function Card({ product, openProductModal }) {
 
@@ -17,13 +21,24 @@ function Card({ product, openProductModal }) {
       </div>
 
 
-      <button type="button" onClick={openProductModal} className="btnCard">
+      {/* <button type="button" onClick={openProductModal} className="btnCard">
         Read More!
-      </button>
+      </button> */}
+      <Link to={`/products/${product.id}`}>
+        View Details...
+      </Link>
 
     
     </div>
   );
+}
+
+Card.propTypes = {
+  product: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  })
 }
 
 export default Card;

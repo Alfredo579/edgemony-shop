@@ -1,4 +1,4 @@
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./Header.css";
 import HeaderCart from "./HeaderCart";
 function Header({
@@ -11,7 +11,9 @@ function Header({
 }) {
   return (
     <header className="Header">
-      <img src={src} alt={alt} />
+      <Link to="/Home">
+        <img src={src} alt={alt} />
+      </Link>
 
       <HeaderCart
         cartProducts={cartProducts}
@@ -22,6 +24,5 @@ function Header({
     </header>
   );
 }
-
 
 export default Header;

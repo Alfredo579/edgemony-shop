@@ -1,4 +1,5 @@
 import CategoryFilter from "./CategoryFilter";
+import PropTypes from "prop-types";
 
 import "./CategoriesFilter.css";
 
@@ -19,6 +20,13 @@ function CategoriesFilter({
       ))}
     </div>
   );
+}
+
+CategoriesFilter.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  selectedCategories: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onSelectCategory: PropTypes.func.isRequired
+
 }
 
 

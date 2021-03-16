@@ -2,9 +2,10 @@ import Card from "./Card";
 import CategoriesFilter from "./CategoriesFilter";
 import Search from "./Search";
 import "./CarouselProduct.css";
-import { useMediaQuery } from "react-responsive";
 import "./Hero.css";
+import { useMediaQuery } from "react-responsive";
 import { useState } from "react";
+import PropTypes from "prop-types"
 function CarouselProducts({ products, openProductModal, categories }) {
   const isTabletOrLaptop = useMediaQuery({
     query: "(max-device-width: 380px)",
@@ -20,6 +21,7 @@ function CarouselProducts({ products, openProductModal, categories }) {
       (selectedCategories.length === 0 ||
         selectedCategories.includes(product.category))
   );
+
 
 
   return (
@@ -48,6 +50,12 @@ function CarouselProducts({ products, openProductModal, categories }) {
       })}
     </section>
   );
+}
+
+CarouselProducts.propTypes = {
+  products: PropTypes.array.isRequired,
+  openProductModal: PropTypes.func,
+  categories: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default CarouselProducts;
